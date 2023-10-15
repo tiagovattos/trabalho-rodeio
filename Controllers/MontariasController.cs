@@ -21,7 +21,7 @@ namespace trabalho_rodeio.Controllers
         // GET: Montarias
         public async Task<IActionResult> Index()
         {
-            var contexto = _context.Montarias.Include(m => m.Peao).Include(m => m.Touro);
+            var contexto = _context.Montarias.Include(m => m.Cidade).Include(m => m.Peao).Include(m => m.Touro);
             return View(await contexto.ToListAsync());
         }
 
@@ -34,6 +34,7 @@ namespace trabalho_rodeio.Controllers
             }
 
             var montaria = await _context.Montarias
+                .Include(m => m.Cidade)
                 .Include(m => m.Peao)
                 .Include(m => m.Touro)
                 .FirstOrDefaultAsync(m => m.Id == id);
@@ -48,6 +49,7 @@ namespace trabalho_rodeio.Controllers
         // GET: Montarias/Create
         public IActionResult Create()
         {
+            ViewData["CidadeId"] = new SelectList(_context.Cidades, "Id", "Descricao");
             ViewData["PeaoId"] = new SelectList(_context.Peoes, "Id", "Nome");
             ViewData["TouroId"] = new SelectList(_context.Touros, "Id", "Nome");
             return View();
@@ -58,7 +60,7 @@ namespace trabalho_rodeio.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Data,PeaoId,TouroId")] Montaria montaria)
+        public async Task<IActionResult> Create([Bind("Id,Data,PeaoId,TouroId,CidadeId")] Montaria montaria)
         {
             if (ModelState.IsValid)
             {
@@ -66,6 +68,7 @@ namespace trabalho_rodeio.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["CidadeId"] = new SelectList(_context.Cidades, "Id", "Descricao", montaria.CidadeId);
             ViewData["PeaoId"] = new SelectList(_context.Peoes, "Id", "Nome", montaria.PeaoId);
             ViewData["TouroId"] = new SelectList(_context.Touros, "Id", "Nome", montaria.TouroId);
             return View(montaria);
@@ -84,6 +87,7 @@ namespace trabalho_rodeio.Controllers
             {
                 return NotFound();
             }
+            ViewData["CidadeId"] = new SelectList(_context.Cidades, "Id", "Descricao", montaria.CidadeId);
             ViewData["PeaoId"] = new SelectList(_context.Peoes, "Id", "Nome", montaria.PeaoId);
             ViewData["TouroId"] = new SelectList(_context.Touros, "Id", "Nome", montaria.TouroId);
             return View(montaria);
@@ -94,7 +98,7 @@ namespace trabalho_rodeio.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Data,PeaoId,TouroId")] Montaria montaria)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Data,PeaoId,TouroId,CidadeId")] Montaria montaria)
         {
             if (id != montaria.Id)
             {
@@ -121,6 +125,7 @@ namespace trabalho_rodeio.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["CidadeId"] = new SelectList(_context.Cidades, "Id", "Descricao", montaria.CidadeId);
             ViewData["PeaoId"] = new SelectList(_context.Peoes, "Id", "Nome", montaria.PeaoId);
             ViewData["TouroId"] = new SelectList(_context.Touros, "Id", "Nome", montaria.TouroId);
             return View(montaria);
@@ -135,6 +140,7 @@ namespace trabalho_rodeio.Controllers
             }
 
             var montaria = await _context.Montarias
+                .Include(m => m.Cidade)
                 .Include(m => m.Peao)
                 .Include(m => m.Touro)
                 .FirstOrDefaultAsync(m => m.Id == id);

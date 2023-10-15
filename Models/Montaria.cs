@@ -15,15 +15,21 @@ namespace trabalho_rodeio.Models
         public DateTime Data { get; set; }
 
         [Required]
-        public int PeaoId { get; set; } // ID do Peao associado à montaria
+        public int PeaoId { get; set; } 
 
         [Required]
-        public int TouroId { get; set; } // ID do Touro associado à montaria
+        public int TouroId { get; set; }
+
+        [Required]
+        public int CidadeId {  get; set; }
 
         [ForeignKey("PeaoId")]
         public Peao Peao { get; set; }
 
         [ForeignKey("TouroId")]
         public Touro Touro { get; set; }
+
+        [ForeignKey("CidadeId")]
+        public Cidade Cidade { get; set; }
     }
 }
