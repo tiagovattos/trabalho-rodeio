@@ -45,6 +45,8 @@ namespace trabalho_rodeio.Controllers
         // GET: Montarias/Create
         public IActionResult Create()
         {
+            ViewData["PeaoList"] = new SelectList(_context.Peoes, "Id", "Nome");
+            ViewData["TouroList"] = new SelectList(_context.Touros, "Id", "Nome");
             return View();
         }
 
