@@ -14,7 +14,8 @@ namespace trabalho_rodeio.Models
         [StringLength(50)]
         public string Nome { get; set; }
 
-        [Required]
+        [Display(Name = "Data de Nascimento")]
+        [DataType(DataType.Date)]
         public DateTime DataNascimento { get; set; }
 
         [Required]
