@@ -56,18 +56,29 @@ namespace trabalho_rodeio.Controllers
         }
 
         // POST: Montarias/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Data,PeaoId,TouroId,CidadeId")] Montaria montaria)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(montaria);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                var peao = await _context.Peoes.FindAsync(montaria.PeaoId);
+                var touro = await _context.Touros.FindAsync(montaria.TouroId);
+
+                if (peao != null && touro != null)
+                {
+                    peao.QuantidadeMontarias += 1;
+                    touro.QuantidadeMontarias += 1;
+                    _context.Update(peao);
+                    _context.Update(touro);
+
+                    _context.Add(montaria);
+                    await _context.SaveChangesAsync();
+
+                    return RedirectToAction(nameof(Index));
+                }
             }
+
             ViewData["CidadeId"] = new SelectList(_context.Cidades, "Id", "Descricao", montaria.CidadeId);
             ViewData["PeaoId"] = new SelectList(_context.Peoes, "Id", "Nome", montaria.PeaoId);
             ViewData["TouroId"] = new SelectList(_context.Touros, "Id", "Nome", montaria.TouroId);
@@ -175,5 +186,7 @@ namespace trabalho_rodeio.Controllers
         {
           return _context.Montarias.Any(e => e.Id == id);
         }
+
+
     }
 }
