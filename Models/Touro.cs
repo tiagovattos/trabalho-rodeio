@@ -17,6 +17,7 @@ namespace trabalho_rodeio.Models
         public int Idade { get; set; }
 
         [Required]
+        [Display(Name = "Quantidade de Montarias")]
         public int QuantidadeMontarias { get; set; }
     }
 }

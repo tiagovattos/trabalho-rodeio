@@ -12,6 +12,7 @@ namespace trabalho_rodeio.Models
 
         [Required]
         [StringLength(50)]
+        [Display(Name ="Descrição")]
         public string Descricao { get; set; }
     }
 }

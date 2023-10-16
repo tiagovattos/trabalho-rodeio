@@ -19,6 +19,7 @@ namespace trabalho_rodeio.Models
         public DateTime DataNascimento { get; set; }
 
         [Required]
+        [Display(Name = "Quantidade de Montarias")]
         public int QuantidadeMontarias { get; set; }
     }
 }
