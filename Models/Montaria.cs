@@ -13,6 +13,7 @@ namespace trabalho_rodeio.Models
 
         [Required]
         [Display(Name ="Data e Hora")]
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy HH:mm}", ApplyFormatInEditMode = true)]
         public DateTime Data { get; set; }
 
         [Required]

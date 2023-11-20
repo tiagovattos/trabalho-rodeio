@@ -37,12 +37,12 @@ namespace trabalho_rodeio.Controllers
                 peao.Nome = nomeCompleto;
 
                 DateTime dataNascimento = new DateTime(1950, 1, 1);
-                int diasAleatorios = random.Next(0, 13000);
+                int diasAleatorios = random.Next(0, 17000);
                 dataNascimento = dataNascimento.AddDays(diasAleatorios);
 
                 peao.DataNascimento = dataNascimento;
 
-                peao.QuantidadeMontarias = 0;
+                peao.QuantidadeMontarias = random.Next(0, 100);
 
                 _context.Peoes.Add(peao);
             }
