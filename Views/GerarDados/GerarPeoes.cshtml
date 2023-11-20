@@ -1,15 +1,12 @@
-﻿@model IEnumerable<trabalho_rodeio.Models.Touro>
+﻿@model IEnumerable<trabalho_rodeio.Models.Peao>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "GerarPeoes";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Touros</h1>
+<h1>GerarPeoes</h1>
 
-<p>
-    <a asp-action="Create" class="btn btn-primary">Novo</a>
-</p>
 <table class="table">
     <thead>
         <tr>
@@ -17,7 +14,7 @@
                 @Html.DisplayNameFor(model => model.Nome)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Idade)
+                @Html.DisplayNameFor(model => model.DataNascimento)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.QuantidadeMontarias)
@@ -32,15 +29,15 @@
                 @Html.DisplayFor(modelItem => item.Nome)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Idade)
+                @Html.DisplayFor(modelItem => item.DataNascimento)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.QuantidadeMontarias)
             </td>
             <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">Edit</a>
-                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info">Details</a>
-                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
             </td>
         </tr>
 }
