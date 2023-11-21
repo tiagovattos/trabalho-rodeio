@@ -7,24 +7,6 @@
     <RootNamespace>trabalho_rodeio</RootNamespace>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="Content\**" />
-    <Compile Remove="NewFolder\**" />
-    <Compile Remove="Views\GerarDados\**" />
-    <Compile Remove="Views\NewFolder\**" />
-    <Content Remove="Content\**" />
-    <Content Remove="NewFolder\**" />
-    <Content Remove="Views\GerarDados\**" />
-    <Content Remove="Views\NewFolder\**" />
-    <EmbeddedResource Remove="Content\**" />
-    <EmbeddedResource Remove="NewFolder\**" />
-    <EmbeddedResource Remove="Views\GerarDados\**" />
-    <EmbeddedResource Remove="Views\NewFolder\**" />
-    <None Remove="Content\**" />
-    <None Remove="NewFolder\**" />
-    <None Remove="Views\GerarDados\**" />
-    <None Remove="Views\NewFolder\**" />
-  </ItemGroup>
 
   <ItemGroup>
     <None Remove="Views\Home\barretos.jpg" />

@@ -1,10 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using trabalho_rodeio.Areas.Identity.Data;
 
 namespace trabalho_rodeio.Models
 {
-    public class Contexto : DbContext
+    public class Contexto : IdentityDbContext<UserRodeio>
     {
         public Contexto(DbContextOptions<Contexto> options) : base(options) { }
 

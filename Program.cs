@@ -10,6 +10,7 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddDefaultIdentity<UserRodeio>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<Contexto>();
 
+
 builder.Services.AddDbContext<Contexto>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("conexao")));
 
