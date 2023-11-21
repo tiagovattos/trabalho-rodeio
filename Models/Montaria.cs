@@ -36,5 +36,8 @@ namespace trabalho_rodeio.Models
 
         [ForeignKey("CidadeId")]
         public Cidade Cidade { get; set; }
+
+        [NotMapped] 
+        public int QuantidadeMontarias { get; set; }
     }
 }

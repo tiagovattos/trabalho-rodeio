@@ -186,6 +186,22 @@ namespace trabalho_rodeio.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        public IActionResult AgruparPorCidade()
+        {
+            var montariasAgrupadas = _context.Montarias
+                .Include(m => m.Cidade)
+                .GroupBy(m => m.Cidade)
+                .Select(g => new Montaria
+                {
+                    Cidade = g.Key,
+                    QuantidadeMontarias = g.Count()
+                })
+                .ToList();
+
+            return View("Agrupadas", montariasAgrupadas);
+        }
+
+
         private bool MontariaExists(int id)
         {
           return _context.Montarias.Any(e => e.Id == id);

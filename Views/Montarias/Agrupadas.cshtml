@@ -1,0 +1,28 @@
+﻿@model IEnumerable<trabalho_rodeio.Models.Montaria>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Cidade.Descricao)
+            </th>
+            <th>
+                Quantidade de Montarias
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.Cidade.Descricao
+                </td>
+                <td>
+                    @item.QuantidadeMontarias
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
