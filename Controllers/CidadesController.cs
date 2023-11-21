@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -9,6 +10,7 @@ using trabalho_rodeio.Models;
 
 namespace trabalho_rodeio.Controllers
 {
+    [Authorize]
     public class CidadesController : Controller
     {
         private readonly Contexto _context;
@@ -19,12 +21,14 @@ namespace trabalho_rodeio.Controllers
         }
 
         // GET: Cidades
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
               return View(await _context.Cidades.ToListAsync());
         }
 
         // GET: Cidades/Details/5
+        [AllowAnonymous]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Cidades == null)

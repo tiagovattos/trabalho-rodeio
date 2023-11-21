@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -9,6 +10,7 @@ using trabalho_rodeio.Models;
 
 namespace trabalho_rodeio.Controllers
 {
+    [Authorize]
     public class PeoesController : Controller
     {
         private readonly Contexto _context;
@@ -52,6 +54,7 @@ namespace trabalho_rodeio.Controllers
         }
 
         // GET: Peoes
+        [AllowAnonymous]
         public async Task<IActionResult> Index(string sortOrder)
         {
             ViewData["NameSortParam"] = string.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
@@ -73,6 +76,7 @@ namespace trabalho_rodeio.Controllers
 
 
         // GET: Peoes/Details/5
+        [AllowAnonymous]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Peoes == null)
