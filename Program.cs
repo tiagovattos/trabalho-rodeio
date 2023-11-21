@@ -1,13 +1,19 @@
 using Microsoft.EntityFrameworkCore;
 using trabalho_rodeio.Models;
+using Microsoft.AspNetCore.Identity;
+using trabalho_rodeio.Areas.Identity.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddDefaultIdentity<UserRodeio>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<Contexto>();
+
 builder.Services.AddDbContext<Contexto>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("conexao")));
+
+
 
 
 var app = builder.Build();
@@ -30,5 +36,7 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.MapRazorPages();
 
 app.Run();
